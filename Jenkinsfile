@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         IMAGE_TAG = env.BRANCH_NAME.replaceFirst('^master$', 'latest')
-        GITLAB_TOKEN = credentials('coverage-collector-token')
+        GITLAB_TOKEN = credentials('coverage-collector-gitlab-token')
         SCANNER_HOME = tool name: 'SonarQube Scanner 3', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
     }
 
