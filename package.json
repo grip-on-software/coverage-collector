@@ -1,0 +1,10 @@
+{
+  "private": true,
+  "scripts": {
+    "start": "node ./lib/index.js"
+  },
+  "dependencies": {
+    "express": "^4.16.3",
+    "istanbul-middleware": "^0.2.2"
+  }
+}
