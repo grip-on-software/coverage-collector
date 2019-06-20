@@ -1,4 +1,4 @@
-FROM node:8-alpine
+FROM node:10-alpine
 EXPOSE 8888
 
 RUN mkdir -p /usr/src/app
