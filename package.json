@@ -5,6 +5,6 @@
   },
   "dependencies": {
     "express": "^4.17.3",
-    "istanbul-middleware": "^0.2.2"
+    "nyc-middleware": "^1.0.4"
   }
 }
