@@ -1,10 +1,28 @@
 {
-  "private": true,
+  "name": "@gros/coverage-collector",
+  "version": "0.0.1",
+  "description": "Collect JavaScript coverage information during a test run.",
+  "license": "Apache-2.0",
+  "author": "Leon Helwerda <l.s.helwerda@liacs.leidenuniv.nl>",
+  "files": [
+      "lib/*.js"
+  ],
+  "directories": {
+      "lib": "lib"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/grip-on-software/coverage-collector.git"
+  },
+  "homepage": "https://github.com/grip-on-software/coverage-collector",
+  "bugs": {
+    "url": "https://github.com/grip-on-software/coverage-collector/issues"
+  },
   "scripts": {
     "start": "node ./lib/index.js"
   },
   "dependencies": {
-    "express": "^4.17.3",
+    "express": "^4.18.2",
     "nyc-middleware": "^1.0.4"
   }
 }
