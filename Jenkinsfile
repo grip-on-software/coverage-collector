@@ -17,9 +17,6 @@ pipeline {
     }
 
     post {
-        success {
-            updateGitlabCommitStatus name: env.JOB_NAME, state: 'success'
-        }
         failure {
             updateGitlabCommitStatus name: env.JOB_NAME, state: 'failed'
         }
@@ -29,10 +26,19 @@ pipeline {
     }
 
     stages {
+        stage('Start') {
+            when {
+                not {
+                    triggeredBy 'TimerTrigger'
+                }
+            }
+            steps {
+                updateGitlabCommitStatus name: env.JOB_NAME, state: 'running'
+            }
+        }
         stage('Build') {
             steps {
                 checkout scm
-                updateGitlabCommitStatus name: env.JOB_NAME, state: 'running'
                 sh 'docker build -t $DOCKER_REGISTRY/gros-coverage-collector:$IMAGE_TAG . --build-arg NPM_REGISTRY=$NPM_REGISTRY'
             }
         }
@@ -40,6 +46,16 @@ pipeline {
             when { branch 'master' }
             steps {
                 sh 'docker push $DOCKER_REGISTRY/gros-coverage-collector:latest'
+            }
+        }
+        stage('Status') {
+            when {
+                not {
+                    triggeredBy 'TimerTrigger'
+                }
+            }
+            steps {
+                updateGitlabCommitStatus name: env.JOB_NAME, state: 'success'
             }
         }
     }
